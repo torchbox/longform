@@ -1,0 +1,4 @@
+{% load wagtailimages_tags %}
+
+{% image value.fallback_image.image original as image %}
+{% include "patterns/00-atoms/03-images/01-image.twig" with url=image.url %}

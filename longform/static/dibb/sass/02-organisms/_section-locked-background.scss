@@ -1,0 +1,299 @@
+.section--locked_background {
+
+    > .content {
+        color: $color--base !important;
+        // background: $color--white !important;
+    }
+
+    /*
+        Content
+    */
+    .content--scroll {
+        @include outterGutter;
+        @include scrollContainer;
+        position: relative;
+        height: 100%;
+    }
+    .content--locked {
+        @include lockedBackground;
+
+        div[class^='block--'] {
+
+            position: absolute;
+            top: 0px; left: 0px;
+
+            // Default state
+            transform: translate3D( 0%, 0%, 0 );
+            opacity: 0;          
+
+            &.unload {
+                display: none;
+            }
+
+            &.reset {
+                display: none;
+            }
+
+            &.anim--in-up {
+                transform: translate3D( 0%, 0%, 0 );
+                opacity: 1;
+                &-setup {
+                    transform: translate3D( 0%, 50%, -50px );
+                    opacity: 0;
+                    transition-duration: 0ms;
+                    transition-delay: 0ms;
+                }
+                &-transition {
+                    transition:
+                        opacity 900ms linear 0s,
+                        transform 900ms ease 0s;
+                }
+            }
+
+            &.anim--in-down {
+                transform: translate3D( 0%, 0%, 0 );
+                opacity: 1;
+                &-setup {
+                    transform: translate3D( 0%, -50%, -50px );
+                    opacity: 0;
+                    transition-duration: 0ms;
+                    transition-delay: 0ms;
+                }
+                &-transition {
+                    transition:
+                        opacity 900ms linear 0s,
+                        transform 900ms ease 0s;
+                }
+            }
+
+
+            &.is--loaded {}
+
+            &.anim--out-up {
+                transform: translate3D( 0%, -50%, -50px );
+                opacity: 0;
+                &-setup {
+                    transform: translate3D( 0%, 0%, 0 );
+                    opacity: 1;
+                    transition-duration: 0ms;
+                    transition-delay: 0ms;
+                }
+                &-transition {
+                    transition:
+                        opacity 900ms linear 0s,
+                        transform 900ms ease 0s;
+                }
+            }
+            &.anim--out-down {
+                transform: translate3D( 0%, 50%, -50px );
+                opacity: 0;
+                &-setup {
+                    transform: translate3D( 0%, 0%, 0 );
+                    opacity: 1;
+                    transition-duration: 0ms;
+                    transition-delay: 0ms;
+                }
+                &-transition {
+                    transition:
+                        opacity 900ms linear 0s,
+                        transform 900ms ease 0s;
+                }
+            }
+
+            // TEMP
+            .progress {
+                display: none;
+            }
+
+
+        }
+    }
+
+    /*
+        Columns
+    */
+    .column--middle,
+    .column--left,
+    .column--right {
+        transition:
+            opacity 550ms linear 0ms,
+            transform 950ms $ease--primary 0ms;
+    }
+
+    .column--left,
+    .column--right {
+        // Padding for scroll content
+        padding-top: 30%;
+        padding-bottom: 30%;
+        opacity: 1;
+        transform: translate3d( 0%, 0%, 0 );
+
+    }
+    .column--middle {
+        padding-top: 30%;
+        padding-bottom: 30%;
+    }
+
+    /*
+        State & Animations
+    */
+    &.anim--in {
+
+        .content--scroll {
+            transform: translate3d( 0%, 0%, 0 );
+
+            .direction--up & {
+                transform: translate3D( 0%, 0%, 0px );
+            }
+            transition:
+                opacity 550ms linear 0ms,
+                transform 1000ms $ease--primary 300ms;
+        }
+
+        .content--locked {
+            transform: translate3d( 0%, 0%, 0 );
+
+            .direction--up & {
+                transform: translate3D( 0%, 0%, 0px );
+            }
+            transition:
+                opacity 550ms linear 0ms,
+                transform 1000ms $ease--primary 150ms;
+        }
+
+        &-setup {
+
+            .content--scroll {
+                transform: translate3D( 0%, 40%, 0px );
+
+                transition-duration: 0ms;
+                transition-delay: 0ms;
+
+                .direction--up & {
+                    transform: translate3D( 0%, -40%, 0px );
+                }
+
+            }
+
+            .content--locked {
+                transform: translate3D( 0%, 40%, 0px );
+
+                transition-duration: 0ms;
+                transition-delay: 0ms;
+
+                .direction--up & {
+                    transform: translate3D( 0%, -40%, 0px );
+                }
+
+            }
+        }
+        &-transition {
+
+            .content--scroll {
+                transition:
+                    opacity 550ms linear 0ms,
+                    transform 1000ms $ease--primary 300ms;
+            }
+            .content--locked {
+                transition:
+                    opacity 550ms linear 0ms,
+                    transform 1000ms $ease--primary 150ms;
+            }
+            
+        }
+    }
+
+    &.anim--out {
+
+       .content--scroll {
+            // background: lightblue;
+            transform: translate3d( 0%, -40%, 0 );
+           .direction--up & {
+                transform: translate3D( 0%, 40%, 0px );
+            }
+
+            transition:
+                opacity 550ms linear 0ms,
+                transform 1000ms $ease--primary 0ms;
+
+       }
+
+       .content--locked {
+            // background: lightblue;
+            transform: translate3d( 0%, -40%, 0 );
+           .direction--up & {
+                transform: translate3D( 0%, 40%, 0px );
+            }
+
+            transition:
+                opacity 550ms linear 0ms,
+                transform 1000ms $ease--primary 0ms;
+
+       }
+
+       &-setup {
+
+            transition-duration: 0ms;
+            transition-delay: 0ms;
+
+       }
+       &-transition {
+
+           .content--scroll {
+               transition:
+                   transform 1000ms $ease--primary 0ms;
+           }
+           .content--locked {
+               transition:
+                   transform 1000ms $ease--primary 0ms;
+           }
+           
+       }
+    }
+
+
+    /*
+        Showcase animation
+    */
+    .showcase--in & {
+        // Hide text
+        .column--left,
+        .column--middle,
+        .column--right {
+            opacity: 0;
+            transform: translate3d( -25%, 0%, 0 );
+        }
+        
+    }
+
+    /*
+        Themes
+    */
+    &.theme--dark {
+        > .content {
+            color: $color--white !important;
+            // background: $color--base !important;
+        }
+    }
+
+    // /*
+    //     Optimisation
+    // */
+    // // Potentially extended to a lot of additional elements
+    // .content--locked div[class^='block--'] {
+    //     display: none;
+    //     // &.first,
+    //     // &.last,
+    //     &.block {
+    //         display: block;
+    //     }
+    // }
+    // Does this smooth animations between images?
+    // &.active {
+    //     .content--locked div[class^='block--'] {
+    //         display: block;
+    //     }
+    // }
+
+}
+

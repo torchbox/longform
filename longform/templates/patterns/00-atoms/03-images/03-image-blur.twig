@@ -1,0 +1,21 @@
+<div class="block--image-blur">
+    <div class="content">
+    	<div 
+    		class="image--blur"
+    		data-src="{{ url }}"
+    	></div>
+    	<div class="image--placeholder">
+    		<div class="placeholder" style="background-image: url('{{ placeholder }}')"></div>
+    	</div>
+        {% include "patterns/01-molecules/01-loading/00-progress.twig"  %}
+    	{% if caption %}
+			<div class="image--details">
+				<div class="content">
+					<span class="text--copyright">
+						{{ caption }}
+					</span>
+				</div>
+			</div>
+		{% endif %}
+    </div>
+</div>

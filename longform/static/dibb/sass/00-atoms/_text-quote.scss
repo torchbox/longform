@@ -1,0 +1,35 @@
+/*------------------------------------*\
+    $Quote
+\*------------------------------------*/
+
+.text--quote {
+    @include font-smoothing;
+    display: block;
+    // H2 in design docs (mixin?)
+    font-family: $font-bold;
+    font-weight: 500;
+    text-transform: uppercase;
+    // Responsive points
+    font-size: 30px;
+    line-height: 36px;
+    margin: 0 0 15px;
+    padding: 0px;
+    @include gridle_state( tablet-portrait ){
+        font-size: 34px;
+        line-height: 36px;
+        margin-bottom: 20px;
+    }
+    @include gridle_state( tablet-landscape ){
+        font-size: 38px;
+        line-height: 40px;
+    }
+    @include gridle_state( desktop ){
+        font-size: 48px;
+        line-height: 52px;
+        margin-bottom: 22px;
+    }
+    @include gridle_state( desktop-wide ){
+        font-size: 58px;
+        line-height: 62px;
+    }
+}

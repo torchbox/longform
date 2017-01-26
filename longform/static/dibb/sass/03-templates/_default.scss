@@ -1,0 +1,542 @@
+/* ============================================
+    Default template layout
+*/
+
+// 100% wrapper hight
+html,
+body,
+.site {
+    height: 100%;
+}
+
+// Flexbox layout
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &--header {
+        display: none;
+        align-self: flex-start;
+        // stacking order
+        position: relative;
+        z-index: 5;
+    }
+    &--main {
+        display: flex;
+        flex: 1;
+        // stacking order
+        position: relative;
+        z-index: 1;
+        // Add perspective
+        perspective: 1000px;
+        perspective-origin: left center;
+    }
+}
+
+
+// 100% Width with centralized content container
+footer {
+    width: 100%;
+    text-align: center;
+    > .content {
+        @include gridle_container;
+        max-width: $max-width;
+        margin: 0 auto;
+        text-align: left;
+    }
+}
+
+
+/* ============================================
+
+    Scroll Containers
+
+*/
+.page {
+    overflow: hidden;
+    .page--content {
+        overflow-y: hidden; // updated in JS
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+    }
+    .page--menu {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+    }
+    .page--share {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+    }
+}
+
+/* ============================================
+
+    Core container toggles
+
+*/
+.page {
+    $menu-width: 20vw;
+
+    position: relative;
+    // color: $color--white;
+    background: $color--white;
+    
+
+    &--loader {
+        position: absolute;
+        top: 0px; right: 0px;
+        width: 100%; height:100%;
+        z-index: 0;
+        display: none;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        // background: $color--red;
+
+        opacity: 0;
+        transform: translate3D( 0%, 0%, -100px );
+        
+        transition:
+            opacity 750ms linear 0ms,
+            transform 750ms ease 0ms;
+
+        &.active {
+            opacity: 1;
+            transform: translate3D( 0%, 0%, 0 );
+        }
+
+        .load--init & {
+            display: flex;
+        }
+
+    }
+
+    // Offscreen menu
+    &--menu {
+
+        position: absolute;
+        top: 0px; right: 0px;
+        width: 100%; height:100%;
+        z-index: 2;
+
+        // Animated defaults
+        transform: translate3D( 0%, 10%, 0 );
+        opacity: 0;
+
+        transition:
+            opacity 500ms linear 150ms,
+            transform 900ms $ease--primary 150ms;
+
+        &.unload {
+            display: none;
+        }
+
+        .menu--in & {
+            transform: translate3D( 0%, 0%, 0 );
+            opacity: 1;
+            &-anim {
+                transition-delay: 0ms;
+            }
+        }
+
+        .menu--out & {
+            transform: translate3D( 0%, 10%, 0 );
+            opacity: 0;
+            &-anim {
+                transition-delay: 0ms;
+            }
+        }
+    }
+
+    // Offscreen menu
+    &--share {
+
+        position: absolute;
+        top: 0px; right: 0px;
+        width: 100%; height:100%;
+        z-index: 2;
+
+        // Animated defaults
+        transform: translate3D( 0%, 10%, 0 );
+        opacity: 0;
+
+        transition:
+            opacity 500ms linear 150ms,
+            transform 900ms $ease--primary 0s;
+
+        &.unload {
+            display: none;
+        }
+
+        .share--in & {
+            transform: translate3D( 0%, 0%, 0 );
+            opacity: 1;
+            &-anim {
+                transition-delay: 0ms;
+            }
+        }
+
+        .share--out & {
+            transform: translate3D( 0%, 10%, 0 );
+            opacity: 0;
+            &-anim {
+                transition-delay: 0ms;
+            }
+        }
+    }
+
+    // Onscreen navigation, allows access to menu, chapters etc...
+    &--navigation {
+
+        position: absolute;
+        bottom: 0px; right: 0px;
+        z-index: 4;
+
+        transform: translate3d( 0, 0%, 0 );
+
+        transition:
+            transform 900ms $ease--primary 75ms;
+
+        @include gridle_state( desktop ){
+
+            display: flex;
+            flex: 1;
+            flex-shrink: 0;
+            flex-direction: column;
+            justify-content: center;
+
+            top: 0px; right: 0px;
+            height:100%;
+        }
+
+        > .content {}
+
+        // .share--in & {
+        //     // filter: blur(5px);
+
+        //     @include gridle_state( desktop ){
+        //         transform: translate3d( -500px, 0, 0px );
+        //     }
+        // }
+
+        // .menu--in & {
+        //     @include gridle_state( desktop ){
+        //         transform: translate3d( -500px, 0, 0px );
+        //     }
+        // }
+        // .menu--in-anim & {
+        //     transition-delay: 0ms;
+        // }
+        // .menu--out & {}
+        // .menu--out-anim & {
+        //     transition-delay: 200ms;
+        // }
+
+        // .load--init & {
+        //     transform: translate3d( 0, 100%, 0 );
+
+        //     @include gridle_state( desktop ){
+        //         transform: translate3d( 100%, 0, 0 );
+        //     }
+        // }
+
+        .anim--page_intro & {
+            transform: translate3d( 0, 0%, 0 );
+
+            transition:
+                transform 900ms $ease--primary 500ms;
+        }
+    }
+
+    // Branding
+    &--branding {
+        position: absolute;
+        top: 0px; left: 0px;
+        z-index: 3;
+
+        @include gridle_state( desktop ){
+            width: 100%;
+        }
+
+        transform: translate3d( 0%, -100%, 0 );
+
+        transition:
+            transform 650ms $ease--primary 0s;
+
+        .cover &,
+        .menu--in &,
+        .share--in & {
+            transform: translate3d( 0%, 0%, 0 );
+        }
+
+        .load--init & {
+            // transform: translate3d( 0%, 0%, 0 );
+            // padding: 0 !important;
+        }
+
+    }
+
+    // Grid example
+    &--grid_example {
+        display: none;
+        @include outterGutter;
+        position: absolute;
+        top: 0px; left: 0px;
+        width: 100%; height:100%;
+        z-index: 3;
+        > .content {
+            width: 100%;
+            height: 100%;
+        }
+        pointer-events: none;
+    }
+
+    // Page content, could be renamed to report as it is now further defined
+    &--content {
+        position: absolute;
+        top: 0px; left: 0px;
+        width: 100%; height:100%;
+        z-index: 1;
+
+        // Animated defaults
+        filter: blur(0px);
+        transform: translate3D( 0%, 0, 0px );
+        opacity: 1;
+
+        transition:
+            transform 900ms $ease--primary 0s,
+            opacity 900ms cubic-bezier(0.29, 0.07, 0.15, 0.99) 0s,
+            filter 900ms cubic-bezier(0.29, 0.07, 0.15, 0.99) 50ms;
+
+        .share--in &,
+        .menu--in & {
+            filter: blur( 100px );
+            transform: translate3d( 0%, 0, 0px );
+            opacity: 1;
+        }
+
+    }
+
+    // Placeholder for the inevitble modal request
+    &--footnotes {
+
+        @include gridle_state( tablet-portrait ){
+            width: 60vw;
+        }
+
+        @include gridle_state( desktop ){
+            width: 50vw;
+        }
+
+        @include gridle_state( desktop-wide ){
+            width: 40vw;
+        }
+
+        position: absolute;
+        top: 35vh; left: 0px;
+        width: 100%; height: 30vh;
+        z-index: 2;
+
+        // Animated defaults
+        transform: translate3D( calc( -100% - 44px ), 0%, 0 );
+
+        transition:
+            transform 900ms $ease--primary 150ms;
+
+        .footnotes--in & {
+            transform: translate3D( 0%, 0%, 0 );
+            &-anim {
+                transition-delay: 150ms;
+            }
+        }
+
+        .footnotes--out & {
+            transform: translate3D( calc( -100% - 44px ), 0%, 0 );
+            &-anim {
+                transition-delay: 75ms;
+            }
+        }
+
+    }
+}
+
+
+/*
+    Page scrolling
+    - Hide scrollbar and setup page content for transform3d
+*/
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.page--content > .content {
+    position: absolute;
+    top: 0px; left: 0px;
+    width: 100%; height:100%;
+    z-index: 1;
+    perspective: 1000px;
+    perspective-origin: center;
+
+    color: $color--base;
+    background-color: rgba( $color--base, 0.5 );
+
+    transform: translate3D( 0%, 0, 0 );
+    transition:
+        transform $speed--section $ease--primary 0s;
+}
+
+/*
+    ChapterBlock defaults
+    - Stack and animate active
+*/
+.chapter {
+    position: absolute;
+    top: 0px; left: 0px;
+    display: block;
+    width: 100%; height:100%;
+    z-index: 1;
+    overflow: hidden;
+    background-color: $color--white;
+    opacity: 1;
+    // transform: translate3D( 0%, 0%, 0 );
+    transform: translate3D( 0%, 0%, 0px );
+    transition:
+        opacity 400ms linear 0ms,
+        transform 900ms cubic-bezier(.4,0,.2,1) 0ms;
+
+    > .content {
+        position: absolute;
+        z-index: 2;
+        top: 0px; left: 0px;
+        width: 100%; height:100%;
+
+        transform: translate3D( 0%, 0%, 0 );
+
+        transition:
+            transform 1000ms cubic-bezier(.4,0,.2,1) 100ms;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0px; left: 0px;
+        width: 100%; height: 100%;
+        background-color: $color--base;
+        opacity: 0;
+        z-index: 1;
+
+        transition:
+            opacity 500ms linear 0ms;
+
+        .theme--dark & {
+            opacity: 1;
+        }
+    }
+
+    &.unload {
+        display: none;
+    }
+
+    &.anim--in {
+        z-index: 2;
+        transform: translate3D( 0%, 0%, 0 );
+        .direction--up & {
+            transform: translate3D( 0%, 0%, 0px );
+        }
+        &-setup {
+            z-index: 2;
+            transform: translate3D( 0%, 100%, 0px );
+            .direction--up & {
+                transform: translate3D( 0%, -100%, 0px );
+            }
+            transition-duration: 0ms;
+            transition-delay: 0ms;
+        }
+        &-transition {
+            transition:
+                transform 900ms cubic-bezier(.4,0,.2,1) 0ms;
+        }
+    }
+
+    &.is--loaded {}
+
+    &.anim--out {
+        z-index: 1;
+        transform: translate3D( 0%, 0%, -200px );
+        &-setup {
+            z-index: 1;
+            transition-duration: 0ms;
+            transition-delay: 0ms;
+        }
+        &-transition {
+            transition:
+                transform 900ms cubic-bezier(.4,0,.2,1) 0ms;
+        }
+    }
+
+}
+
+/*
+    SectionBlock defaults
+     - Carry 100% height
+*/
+div[class^='section--'] {
+
+    display: block;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+
+    > .content {
+        position: relative;
+        height: 100%;
+        perspective: 1000px;
+        // theme--dark
+        // color: $color--white;
+        // background: $color--base;
+
+        // .theme--light & {
+        //     color: $color--base;
+        //     background: $color--white;
+        // }
+    }
+
+    &.unload {
+        > .content {
+            display: none;
+        }
+    }
+
+    // Mobile only
+    @include gridle_state( small ){
+        > .content {
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
+            will-change: transform;
+        }
+        &.active > .content {
+            // Set in JS
+            // overflow-y: auto;
+        }
+    }
+}
+
+/*
+    ContentBlock defaults
+*/
+.content--scroll {
+    @include gridle_container;
+    position: relative;
+    z-index: 2;
+}
+
+.content--locked {
+    @include gridle_container;
+}
+

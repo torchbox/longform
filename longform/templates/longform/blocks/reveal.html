@@ -1,0 +1,22 @@
+{% load wagtailimages_tags %}
+
+<div class="content--locked">
+    <div class="column--middle">
+        <div class="content">
+            <div class="block--text-heading">
+                <div class="content">
+                    {{ value.foreground }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column--cover">
+        <div class="content">
+
+            {% image value.background.image fill-1920x1080 as image %}
+            {% image value.background.image fill-42x42 as placeholder %}
+            {% include "patterns/00-atoms/03-images/02-image-cover.twig" with url=image.url photographer=image.photographer placeholder=placeholder.url  %}
+
+        </div>
+    </div>
+</div>

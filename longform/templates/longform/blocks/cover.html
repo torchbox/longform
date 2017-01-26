@@ -1,0 +1,84 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<div class="section--cover theme--dark">
+    <div class="content">
+        <div class="content--scroll" style="overflow-y: auto;">
+            <div class="column--middle">
+                <div class="content">
+
+                    {% if render_accessible %}
+                        {% include "longform/includes/branding.html" %}
+                    {% endif %}
+
+                    <div class="block--text-heading first">
+                        <div class="content">
+                            <h1 class="text--heading">{{ page.title }}</h1>
+                        </div>
+                    </div>
+                    <div class="block--text-introduction">
+                        <div class="content">
+                            <h2 class="text--introduction">{{ page.introduction }}</h2>
+                        </div>
+                    </div>
+
+                    {% if render_accessible %}
+
+                        <div class="block--actions">
+                            <div class="content">
+
+                                <div class="chapter--links">
+                                    <div class="content">
+                                        
+                                        <div class="text--chapter_name">
+                                            Table of contents
+                                        </div>
+
+                                        {% for chapter in page.body %}
+                                            <a class="link--chapter" href="#{{ chapter.value.title|slugify }}">
+                                                <div class="image--icon">
+                                                    <div class="icon--square"></div>
+                                                </div>
+                                                <div class="text--chapter_name">
+                                                    {{ chapter.value.title }}
+                                                </div>
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    {% else %}
+                        <div class="block--actions">
+                            <div class="content">
+                                <div class="block--text-button">
+                                    <div class="content">
+                                        <a class="text--button link--continue" href="#continue">Continue</a>
+                                    </div>
+                                </div>
+                                <div class="block--text-button">
+                                    <div class="content">
+                                        <a class="text--button link--lo_bandwidth" href="?accessible=true">Slow connection?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        <div class="content--locked">
+            <div class="column--cover">
+                <div class="content">
+                    {% image page.background_image original as image %}
+                    {% image page.background_image fill-42x42 as placeholder %}
+                    {% include "patterns/00-atoms/03-images/03-image-blur.twig" with url=image.url placeholder=placeholder.url caption=page.background_image.caption %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,248 @@
+.section--cover {
+
+    // background-color: $color--base;
+
+    .content--locked {
+        @include gridle_container;
+        @include lockedBackground;
+        // background-color: $color--base;
+
+        // transition:
+        //         opacity 1500ms linear 0ms,
+        //         transform 1000ms ease 0ms;
+    }
+
+    .content--scroll {
+        @include outterGutter;
+        position: relative;
+        height: 100%;
+
+        transform: translate3d( 0%, 0%, 0 );
+
+        // opacity: 1;
+        // transform: translate3d( 0%, 100%, 0 );
+
+        // transition:
+        //         opacity 450ms linear 0ms,
+        //         transform 1100ms ease 100ms;
+    }
+
+
+    .column--middle,
+    .column--left,
+    .column--right {
+        transition:
+            opacity 550ms linear 0ms,
+            transform 950ms $ease--primary 0ms;
+    }
+        
+    .column--middle {
+
+        @include gridle_set((
+            grid : 10,
+            push: 1,
+            tablet-portrait: (
+                push: 1,
+                grid : 10
+            )
+        ));
+
+        // Vertically align content
+        position: relative;
+        height: 100%;
+        text-align: center;
+        color: $color--white;
+
+        opacity: 1;
+        transform: translate3d( 0%, 0%, 0 );
+        
+        > .content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    .block--actions {
+        display: none;
+        @include gridle_state( tablet-landscape ){
+            display: block;
+        }
+        // flex-basis: baseline;
+    }
+    
+    .block--image-blur.loaded .image--blur {
+        filter: blur( 0px );
+    }
+
+    /*
+        State & Animations
+    */
+
+    &.is--loading {
+        .content--scroll {
+            opacity: 0;
+            transform: translate3d( 0%, 0%, 0 );
+        }
+    }
+
+
+    &.is--loaded {
+
+        &.anim--in {
+
+            .content--scroll {
+                transform: translate3d( 0%, 0%, 0 );
+                // opacity: 1;
+
+                .direction--up & {
+                    transform: translate3D( 0%, 0%, 0px );
+                }
+                transition:
+                    opacity 550ms linear 0ms,
+                    transform 1000ms $ease--primary 300ms;
+            }
+
+            &-setup {
+
+                .content--scroll {
+                    transform: translate3D( 0%, 40%, 0px );
+                    // opacity: 0;
+
+                    transition-duration: 0ms;
+                    transition-delay: 0ms;
+
+                    .direction--up & {
+                        transform: translate3D( 0%, -40%, 0px );
+                    }
+
+                }
+
+            }
+            &-transition {
+
+                .content--scroll {
+                    transition:
+                        opacity 550ms linear 0ms,
+                        transform 1000ms $ease--primary 300ms;
+                }
+                
+            }
+        }
+
+        &.anim--out.is--loaded {
+
+           .content--scroll {
+                // background: lightblue;
+                transform: translate3d( 0%, -40%, 0 );
+               .direction--up & {
+                    transform: translate3D( 0%, 40%, 0px );
+                }
+
+                transition:
+                    opacity 550ms linear 0ms,
+                    transform 1000ms $ease--primary 0ms;
+
+           }
+
+
+           &-setup {
+
+                transition-duration: 0ms;
+                transition-delay: 0ms;
+
+           }
+           &-transition {
+
+               .content--scroll {
+                   transition:
+                       transform 1000ms $ease--primary 0ms;
+               }
+               
+           }
+        }
+    }
+
+        
+    //     .column--middle {
+    //         // opacity: 1;
+    //         // transform: translate3d( 0%, 0%, 0 );
+
+    //         // transition:
+    //         //         opacity 450ms linear 0ms,
+    //         //         transform 1200ms ease 0ms;
+    //     }
+
+    //     .image--blur {
+    //         // filter: blur( 0px );
+
+    //         // transform: translate3d( 0%, 0%, 0 );
+
+    //         // // transition:
+    //         // //     opacity 0ms linear 0ms,
+    //         // //     filter 750ms linear 1800ms;
+    //         // // animation-duration: 3s;
+    //         // // animation-name: intro;
+
+    //         // transition:
+    //         //         opacity 450ms linear 0ms,
+    //         //         transform 1200ms ease 0ms;
+
+    //     }
+
+    // }  
+
+    /*
+        Showcase animation
+    */
+    .showcase--in & {
+        // Hide text
+        .column--left,
+        .column--middle,
+        .column--right {
+            opacity: 0;
+            transform: translate3d( -25%, 0%, 0 );
+        }
+        
+    }
+
+    /*
+        Themes
+        // Cover does not support themes
+    */
+
+
+}
+
+
+// TODO: move these to the correct location
+
+.block--text-button {
+    display: inline-block;
+    margin: $gutter-mobile $gutter-mobile/2;
+    // @include gridle_set((
+    //     grid : 10,
+    //     push: 0,
+    //     tablet-portrait: (
+    //         push: 2,
+    //         grid : 4
+    //     )
+    // ));
+
+    > .content {
+        display: inline-block;
+    }
+}
+.text--button {
+    display: inline-block;
+    width: 200px;
+    padding: $gutter-mobile;
+    color: $color--white;
+    border: 1px solid $color--white;
+    text-decoration: none;
+}
+
+

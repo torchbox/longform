@@ -1,0 +1,18 @@
+{% load wagtailcore_tags %}
+
+{% for block in value %}
+
+<div class="chapter unload" id="{{ block.value.title|slugify }}">
+	<div class="content">
+
+		{% if forloop.first %}
+			{% include "longform/blocks/cover.html" %}
+		{% endif %}
+
+	    {% include_block block %}
+
+    </div>	
+	
+</div>
+
+{% endfor %}

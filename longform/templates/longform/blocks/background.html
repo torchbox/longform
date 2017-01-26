@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+
+{% if value.video %}
+    {% include "patterns/00-atoms/04-video/00-video.twig" with url=value.video %}
+{% else %}
+    {% for item in value.images %}
+        {% image item.value.image fill-1920x1080 as image %}
+        {% image item.value.image fill-42x42 as placeholder %}
+        {% include "patterns/00-atoms/03-images/03-image-blur.twig" with url=image.url caption=item.value.caption placeholder=placeholder.url %}
+    {% endfor %}
+{% endif %}

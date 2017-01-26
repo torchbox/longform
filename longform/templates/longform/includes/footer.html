@@ -1,0 +1,79 @@
+{% load wagtailcore_tags %}
+
+<div class="chapter unload" id="actions">
+    <div class="content">
+        <div class="section--call_to_action theme--light">
+            <div class="content">
+                <div class="content--scroll" style="overflow-y: auto;">
+                    <div class="column--related">
+                        <div class="content">
+                            <div class="block--text-introduction">
+                                <div class="content">
+                                    <p class="text--introduction">Continue reading...</p>
+                                </div>
+                            </div>
+                            {% for item in page.related_links.all %}
+                                <div class="block--text-sub_heading">
+                                    <div class="content">
+                                        <a href="{% pageurl item.link %}" class="text--sub_heading">
+                                            {{ item.link.title }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="block--text-paragraph">
+                                    <div class="content">
+                                        <p class="text--paragraph">
+                                            {{ item.link.specific.introduction }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="column--newsletter">
+                        <div class="content">
+                            <div class="block--text-paragraph">
+                                <div class="content">
+                                    <p class="text--paragraph">Sign up for our email updates and</p>
+                                </div>
+                            </div>
+                            <div class="block--text-sub_heading">
+                                <div class="content">
+                                    <h2 class="text--sub_heading">Never miss a thing</h2>
+                                </div>
+                            </div>
+                            <form class="block--form" action="{% slugurl 'sign-our-newsletter' %}" method="get">
+                                <input class="form--text" type="text" name="email" placeholder="Enter your email address" required="">
+                                <button class="form--button" type="submit">Sign up</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="column--footer">
+                        <div class="content">
+                            <nav class="block--menu">
+                                <div class="content">
+                                    <div class="menu--item">
+                                        <a class="link--menu_item" href="https://wagtail.io/">
+                                            Wagtail
+                                        </a>
+                                    </div>
+                                    <div class="menu--item">
+                                        <a class="link--menu_item" href="https://www.torchbox.com/">
+                                            Torchbox
+                                        </a>
+                                    </div>
+                                </div>
+                            </nav>
+                            <div class="block--text-copyright">
+    	                          <div class="content">
+    		                            <p class="text--copyright">© BRANDNAME 2017</p>
+    	                          </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

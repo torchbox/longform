@@ -1,0 +1,106 @@
+/*------------------------------------*\
+    $Grid example
+\*------------------------------------*/
+
+.page--grid_example {
+	
+}
+
+.column--example {
+
+}
+
+.row {
+
+    margin: 50px 0;
+    width: 100%;
+    text-align: center;
+
+    > .content {
+        @include gridle_container;
+        // max-width: $max-width;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        @include gridle_state( tablet-portrait ){
+            padding: 0 45px;
+        }
+        @include gridle_state( tablet-landscape ){
+            padding: 0 65px;
+        }
+        @include gridle_state( desktop ){
+            padding: 0 79px;
+        }
+        @include gridle_state( desktop-wide ){
+            padding: 0 249px;
+        }
+    }
+
+
+    .item {
+        @include gridle_set((
+            nowrap : true,
+            grid : 1
+        ));
+        > .content {
+            height: 100px;
+            background: $color--primary;
+        }
+    }
+
+    &.example-01 {
+        .item {
+            @include gridle_set((
+                grid : 6
+            ));
+        }
+    }
+
+    &.example-02 {
+        .item.body {
+            @include gridle_set((
+                grid : 8
+            ));
+        }
+        .item.aside {
+            @include gridle_set((
+                grid : 4
+            ));
+        }
+    }
+
+    &.example-03 {
+        .item.body {
+            @include gridle_set((
+                grid : 8
+            ));
+            > .content {
+                height: 200px;
+            }
+        }
+        .item.aside {
+            @include gridle_set((
+                float: right,
+                grid : 4,
+                pull : 0
+                // no-gutter: (right)
+            ));
+            // position: absolute;
+            margin-top: 50px;
+            > .content {
+                background: $color--secondary;
+            }
+        }
+    }
+}
+
+.peekaboo {
+    background: hotpink;
+    @include gridle_set((
+        grid : 20,
+        pull : 8
+    ));
+    > .content {
+        height: 100px;
+    }
+}

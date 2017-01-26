@@ -1,0 +1,122 @@
+{% extends "templates-default" %}
+
+{% block content %}
+
+    {# {{ title }} #}
+
+    <div class="chapter--loader">
+        <div class="content">
+            {# SVG loder graphic here #}
+        </div>
+    </div>
+
+    {% for chapter in chapters %}
+
+        <div class="chapter" id="{{ chapter.name|replace({" " : "_"}) }}">
+            {% if loop.first %}
+                <div class="section--cover theme--dark">
+                    <div class="content">
+                        <div class="content--scroll" style="overflow-y: auto;">
+                            <div class="column--middle">
+                                <div class="content">
+                                    <div class="block--text-heading first">
+                                        <div class="content">
+                                            <h1 class="text--heading">{{ title }}</h1>
+                                        </div>
+                                    </div>
+                                    <div class="block--text-introduction">
+                                        <div class="content">
+                                            <h2 class="text--introduction">{{ description }}</h2>
+                                        </div>
+                                    </div>
+                                    <div class="block--actions">
+                                        <div class="content">
+                                            <div class="block--text-button">
+                                                <div class="content">
+                                                    <a class="text--button" href="#continue">Continue</a>
+                                                </div>
+                                            </div>
+                                            <div class="block--text-button">
+                                                <div class="content">
+                                                    <a class="text--button" href="#">Accessible Print</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content--locked">
+                            <div class="column--cover">
+                                <div class="content">
+                                    <div class="block--video first block active">
+                                        <div class="content">
+                                            <video src="path_to_video_file" autoplay="autoplay" loop="loop" muted=""></video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% include "templates-section" %}
+
+        </div>
+
+    {% endfor %}
+
+    <div class="chapter" id="actions">
+        <div class="section--call_to_action theme--light">
+            <div class="content">
+                <div class="content--scroll" style="overflow-y: auto;">
+                    <div class="column--related">
+                        <div class="content">
+                            {% include "atoms-introduction" with { content : "Continue reading..." } %}
+                            {% include "atoms-sub-heading" with { content : "Lorem ipsum dolor sit amet consectetur" } %}
+                            {% include "atoms-paragraph" with { content : "Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus magna, vel scelerique nisl consectetur et." } %}
+                        </div>
+                    </div>
+                    <div class="column--newsletter">
+                        <div class="content">
+                            {% include "atoms-paragraph" with { content : "Sign up for our email updates and" } %}
+                            {% include "atoms-sub-heading" with { content : "Never miss a thing" } %}
+                            <form class="block--form">
+                                <input class="form--text" type="text" name="email" placeholder="Enter your email address" required="">
+                                <button class="form--button" type="submit">Sign up</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="column--footer">
+                        <div class="content">
+                            <nav class="block--menu">
+                                <div class="content">
+                                    <div class="menu--item">
+                                        <a class="link--menu_item" href="#">
+                                            link item
+                                        </a>
+                                    </div>
+                                    <div class="menu--item">
+                                        <a class="link--menu_item" href="#">
+                                            link item
+                                        </a>
+                                    </div>
+                                    <div class="menu--item">
+                                        <a class="link--menu_item" href="#">
+                                            link item
+                                        </a>
+                                    </div>
+                                </div>
+                            </nav>
+                            {% include "atoms-copyright" with { content : "© 2017" } %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock %}
+

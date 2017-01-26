@@ -1,0 +1,15 @@
+/*------------------------------------*\
+    $Blockquote
+\*------------------------------------*/
+
+.block--blockquote {
+
+    > .content {
+        padding: 0 $gutter-mobile;
+        border-left: solid 2px $color--red;
+    }
+
+    .text--quote {}
+    .text--attribution {}
+
+}

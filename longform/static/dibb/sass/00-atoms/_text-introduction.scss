@@ -1,0 +1,35 @@
+/*------------------------------------*\
+    $Text Introduction
+\*------------------------------------*/
+
+.text--introduction {
+    @include font-smoothing;
+    display: block;
+    // Intro text in design docs (mixin?)
+    font-family: $font-secondary;
+    font-weight: 400;
+    // Responsive points
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 0 40px;
+    padding: 0px;
+    @include gridle_state( tablet-portrait ){
+        font-size: 22px;
+        line-height: 28px;
+        margin-bottom: 40px;
+    }
+    @include gridle_state( tablet-landscape ){
+        font-size: 28px;
+        line-height: 36px;
+        margin-bottom: 40px;
+    }
+    @include gridle_state( desktop ){
+        font-size: 36px;
+        line-height: 44px;
+        margin-bottom: 45px;
+    }
+    @include gridle_state( desktop-wide ){
+        font-size: 46px;
+        line-height: 54px;
+    }
+}

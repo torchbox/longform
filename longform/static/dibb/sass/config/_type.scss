@@ -1,0 +1,24 @@
+/*------------------------------------*\
+    $TYPE
+\*------------------------------------*/
+@font-face {
+    font-family: 'TitilliumRegular';
+    src: url('../fonts/titillium/titillium-regular-webfont.eot');
+    src: url('../fonts/titillium/titillium-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/titillium/titillium-regular-webfont.woff') format('woff'),
+         url('../fonts/titillium/titillium-regular-webfont.ttf') format('truetype'),
+         url('../fonts/titillium/titillium-regular-webfont.svg#TitilliumRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TitilliumBdBold';
+    src: url('../fonts/titillium/titillium-bold-webfont.eot');
+    src: url('../fonts/titillium/titillium-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/titillium/titillium-bold-webfont.woff') format('woff'),
+         url('../fonts/titillium/titillium-bold-webfont.ttf') format('truetype'),
+         url('../fonts/titillium/titillium-bold-webfont.svg#TitilliumBdBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

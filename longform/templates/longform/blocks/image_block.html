@@ -1,0 +1,18 @@
+{% load wagtailimages_tags %}
+
+
+{% comment %}
+{% if value.caption|striptags %}
+    <div class="caption">
+        {{ value.caption }}
+    </div>
+{% elif value.image.caption %}
+    <div class="caption">
+        {{ value.image.caption }}
+    </div>
+{% endif %}
+{% endcomment %}
+
+{% image value.image original as image %}
+{% image value.image fill-42x42 as placeholder %}
+{% include "patterns/00-atoms/03-images/01-image.twig" with url=image.url content=value.caption placeholder=placeholder.url %}

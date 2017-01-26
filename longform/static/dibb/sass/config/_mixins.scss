@@ -1,0 +1,168 @@
+/*------------------------------------*\
+    $MIXINS
+\*------------------------------------*/
+
+/* ============================================
+   CSS Transition
+   Usage: @include transition(width,0.3s,ease-out);
+*/
+@mixin transition($transition-property, $transition-time, $method) {
+    transition: $transition-property $transition-time $method;
+}
+
+/* Rem Unit font sizes with relative fallback http:/seesparkbox.com/foundry/scss_rem_mixin_now_with_a_better_fallback
+    Usage: @include font-size(1, large);
+*/
+@mixin font-size( $decimal-size, $keyword: null ) {
+  @if $keyword{ font-size: $keyword; }
+  @else { font-size: $decimal-size * $base-font-multiplier * 16px;}
+  font-size: $decimal-size * 1rem;
+}
+
+/* ============================================
+  Clearfix
+*/
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+/* ============================================
+  Font smoothing
+*/
+@mixin font-smoothing {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* ============================================
+  Placeholder text
+*/
+@mixin placeholder-text {
+    &.placeholder{ @content; }
+    &:-moz-placeholder{ @content; }
+    &::-moz-placeholder{ @content; }
+    &:-ms-input-placeholder{ @content; }
+    &::-webkit-input-placeholder{ @content; }
+};
+
+/* ============================================
+  iOS Native vertical scroll
+*/
+@mixin native-vertical-scroll {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================
+    Font-size function.
+    Usage:
+        font-size('eta');
+    Returns:
+        14px
+*/
+@function font-size($size) {
+    @return map-get($font-sizes, $size);
+}
+
+/* ============================================
+   Outter gutter
+*/
+
+@mixin outterGutter(){
+    padding-left: $gutter-mobile/2;
+    padding-right: $gutter-mobile/2;
+    @include gridle_state( tablet-portrait ){
+        padding-left: $gutter-tablet/2;
+        padding-right: $gutter-tablet/2;
+    }
+    @include gridle_state( desktop ){
+        padding-left: $gutter-desktop/2;
+        padding-right: $gutter-desktop/2;
+    }
+    @include gridle_state( desktop-wide ){
+        padding-left: $gutter-desktop-wide/2;
+        padding-right: $gutter-desktop-wide/2;
+    }
+}
+
+/* ============================================
+   Vertical spacing
+   - Just testing this out... 
+*/
+
+@mixin verticalSpacing(){
+    padding-top: $gutter-mobile;
+    // padding-bottom: $gutter-mobile/2;
+    @include gridle_state( tablet-portrait ){
+        padding-top: $gutter-tablet;
+        // padding-bottom: $gutter-tablet/2;
+    }
+    @include gridle_state( desktop ){
+        padding-top: $gutter-desktop;
+        // padding-bottom: $gutter-desktop/2;
+    }
+    @include gridle_state( desktop-wide ){
+        padding-top: $gutter-desktop-wide;
+        // padding-bottom: $gutter-desktop-wide/2;
+    }
+}
+
+/* ============================================
+   Block margin-bottom
+*/
+
+// @mixin marginBottom(){
+//   margin-bottom: 18px;
+//   @include gridle_state( tablet-portrait ){
+//     margin-bottom: 28px;
+//   }
+//   @include gridle_state( tablet-landscape ){
+//     margin-bottom: 38px;
+//   }
+//   @include gridle_state( desktop ){
+//     margin-bottom: 48px;
+//   }
+//   @include gridle_state( desktop-wide ){
+//     margin-bottom: 58px;
+//   }
+// }
+
+/* ============================================
+   Locked Background
+   - Section Locked Background mixin
+*/
+@mixin lockedBackground(){
+    overflow: hidden;
+    position: absolute;
+    top: 0px; left: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================
+   Scroll Container
+   - Section Scroll Container Background mixin
+*/
+@mixin scrollContainer(){
+    // Scroll Container
+    height: 100vh;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,0.01) 0%,rgba(255,255,255,0) 2%,rgba(255,255,255,1) 10%,rgba(255,255,255,1) 90%,rgba(255,255,255,0) 97%,rgba(255,255,255,0) 100%);
+    will-change: transform;
+    &.active {
+        // Set in JS
+        // overflow-y: auto;
+    }
+}
+
+
+

@@ -1,0 +1,5 @@
+<div class="block--text-paragraph {% if loop.first %}first{% elseif loop.last %}last{% endif %}">
+	<div class="content">
+		<p class="text--paragraph">{{ content|default('Atom Text Paragraph') }}</p>
+	</div>
+</div>

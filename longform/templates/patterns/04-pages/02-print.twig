@@ -1,0 +1,58 @@
+{% extends "templates-print" %}
+
+{% block content %}
+
+    {# {{ title }} #}
+
+{#     <div class="report--cover">
+        <div class="content">
+            <div class="section--fullscreen_title theme--dark active">
+                <div class="content">
+                    <div class="content--scroll" style="overflow-y: auto;">
+                        <div class="column--middle">
+                            <div class="content">
+                                <div class="block--text-heading first">
+                                    <div class="content">
+                                        <h1 class="text--heading">Chapter 1</h1>
+                                    </div>
+                                </div>
+                                <div class="block--text-sub_heading last">
+                                    <div class="content">
+                                        <h2 class="text--sub_heading">A description for the first chapter</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content--locked">
+                        <div class="column--cover">
+                            <div class="content">
+                                <div class="block--video first block active">
+                                    <div class="content">
+                                        <video src="https://player.vimeo.com/external/179171993.hd.mp4?s=f314f546eb105fed933477790dfe4969a0bf5e15&amp;profile_id=174" autoplay="autoplay" loop="loop" muted=""></video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> #}
+
+    <div class="chapter--loader">
+    	<div class="content">
+    		{# SVG loder graphic here #}
+    	</div>
+    </div>
+
+    {% for chapter in chapters %}
+
+        <div class="chapter" id="{{ chapter.name|replace({" " : "_"}) }}">
+            {% include "templates-section" %}
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
+

@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    $Text Paragraph
+\*------------------------------------*/
+
+.text--copyright {
+    $size: 10px;
+
+    @include font-smoothing;
+    display: block;
+    // Paragraph text in design docs (mixin?)
+    font-family: $font-secondary;
+    font-weight: 200;
+    letter-spacing: 1px;
+    // Responsive points
+    font-size: $size;
+    line-height: 26px;
+    // Text rendering
+    -webkit-font-smoothing: subpixel-antialiased;
+    padding: 0px;
+    @include gridle_state( tablet-portrait ){
+        font-size: $size+1;
+        line-height: 27px;
+    }
+    @include gridle_state( tablet-landscape ){
+        font-size: $size+2;
+        line-height: 28px;
+    }
+    @include gridle_state( desktop ){
+        font-size: $size+3;
+        line-height: 29px;
+    }
+    @include gridle_state( desktop-wide ){
+        font-size: $size+4;
+        line-height: 30px;
+    }
+}

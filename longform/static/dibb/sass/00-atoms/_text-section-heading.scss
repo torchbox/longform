@@ -1,0 +1,32 @@
+/*------------------------------------*\
+    $Text Section Heading
+\*------------------------------------*/
+
+.text--section_heading {
+    @include font-smoothing;
+    display: block;
+    // H3 in design docs (mixin?)
+    font-family: $font-bold;
+    font-weight: 500;
+    // Responsive points
+    font-size: 22px;
+    line-height: 24px;
+    margin: 0;
+    padding: 0px;
+    @include gridle_state( tablet-portrait ){
+        font-size: 26px;
+        line-height: 32px;
+    }
+    @include gridle_state( tablet-landscape ){
+        font-size: 32px;
+        line-height: 34px;
+    }
+    @include gridle_state( desktop ){
+        font-size: 40px;
+        line-height: 42px;
+    }
+    @include gridle_state( desktop-wide ){
+        font-size: 50px;
+        line-height: 58px;
+    }
+}

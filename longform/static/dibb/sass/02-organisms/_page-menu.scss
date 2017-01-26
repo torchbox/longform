@@ -1,0 +1,83 @@
+.page--menu {
+	display: flex;
+	align-items: center;
+
+	> .content {
+		@include gridle_container;
+		@include outterGutter;
+
+		margin: auto;
+		padding-top: 40px;
+		padding-bottom: 40px;
+
+		@include gridle_state( tablet-portrait ){
+		    width: 500px;
+		}
+	}
+
+}
+
+.menu--introduction {
+	@include gridle_set((
+	    grid : 12,
+	    push: 0
+	));
+
+	color: $color--base;
+
+	.text--sub_heading {
+		text-transform: uppercase;
+		margin: 0 0 $gutter-mobile;
+	}
+}
+.menu--links {
+	@include gridle_set((
+	    grid : 12,
+	    push: 0
+	));
+
+	svg {
+		fill: $color--base;
+	}
+
+	.menu--item {
+
+	}
+
+	.link--menu_item {
+		display: block;
+		padding: $gutter-mobile $gutter-mobile/2;
+		border-bottom: 1px solid rgba( $color--base, 0.2 );
+
+		color: $color--base;
+		text-decoration: none;
+
+		&:hover {
+			color: $color--red;
+		}
+	}
+}
+
+
+/*
+	Themes
+*/
+// Dark background, light foreground
+.theme--dark {
+	.menu--introduction {
+		color: $color--white;
+	}
+
+	svg {
+		fill: $color--white;
+	}
+
+	.menu--links {
+		.link--menu_item {
+			border-bottom: 1px solid rgba( $color--white, 0.2 );
+			color: $color--white;
+		}
+	}
+	
+}
+

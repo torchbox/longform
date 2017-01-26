@@ -1,0 +1,80 @@
+
+.page--share {
+	display: flex;
+	align-items: center;
+
+	> .content {
+		@include gridle_container;
+		@include outterGutter;
+
+		margin: auto;
+		padding-top: 40px;
+		padding-bottom: 40px;
+
+		@include gridle_state( tablet-portrait ){
+		    width: 500px;
+		}
+	}
+
+}
+
+.share--introduction {
+
+	@include gridle_set((
+	    grid : 12,
+	    push: 0
+	));
+
+	margin-bottom: $gutter-mobile;
+
+	[class^='text--'] {
+		margin-bottom: $gutter-mobile/2;
+	}
+}
+.share--links {
+	@include gridle_set((
+	    grid : 12,
+	    push: 0
+	));
+
+	a[class^='link--'] {
+		display: inline-block;
+		margin: 0 $gutter-mobile/2 $gutter-mobile/2 0;
+
+		svg {
+			fill: $color--base;
+		}
+
+		&:hover {
+			svg {
+				fill: $color--red;
+			}
+		}
+	}
+
+}
+
+
+/*
+	Themes
+*/
+// Dark background, light foreground
+.theme--dark {
+	.share--introduction {
+		color: $color--white;
+	}
+
+	.share--links {
+		a[class^='link--'] {
+			svg {
+				fill: $color--white;
+			}
+			&:hover {
+				svg {
+					fill: $color--red;
+				}
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,81 @@
+<div class="site">
+    <div class="page">
+        <main class="page--main">
+            {% include "organisms-site-header" %}
+            <div class="page--navigation">
+                <div class="content">
+                    {% include "organisms-navigation" %}
+                </div>
+            </div>
+            <div class="page--menu unload">
+                <div class="content">
+                    {% include "organisms-menu" %}
+                </div>
+            </div>
+            <div class="page--share unload">
+                <div class="content">
+                    {% include "organisms-share" %}
+                </div>
+            </div>
+            <div class="page--branding">
+                <div class="content">
+                    <a class="link--home" href="#">
+                        <div class="image--logo">
+                            <svg class="logo"  width="297" height="50">
+                                <use x="0" y="0" xlink:href="#logo" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="page--grid_example">
+            	<div class="content">
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            		<div class="column--example">
+            			<div class="content"></div>
+            		</div>
+            	</div>
+            </div>
+            <div class="page--content">
+                <div class="content">
+
+                    {% block content %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

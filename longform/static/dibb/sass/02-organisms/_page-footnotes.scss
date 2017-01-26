@@ -1,0 +1,73 @@
+.page--footnotes {
+
+	background: rgba( $color--base, 0.98 );
+	color: $color--white;
+
+	> .content {
+		
+	}
+
+}
+
+.footnotes--close {
+
+	position: absolute;
+	top: 0px; right: -44px;
+
+	display: block;
+	width: 44px;
+	height: 44px;
+
+	.link--close {
+		width: 44px;
+		height: 44px;
+
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: center;
+
+		background: $color--red;
+	}
+
+	.image--close {
+		display: block;
+		margin: 0 auto;
+	}
+	.close {
+		transform: rotate( 45deg );
+		transform-origin: 50% 50%;
+	}
+	.svg--close {
+		fill: $color--white;
+	}
+}
+
+.footnotes--list {
+	@include scrollContainer();
+	height: 30vh;
+	overflow-y: auto;
+
+	display: flex;
+	align-items: center;
+	
+	>.content {
+		@include gridle_container;
+		@include outterGutter;
+
+		margin: auto 0 auto 40px;
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+
+}
+
+
+/*
+	Themes
+*/
+// Dark background, light foreground
+.theme--dark {
+	
+}
+

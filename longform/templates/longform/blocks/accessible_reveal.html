@@ -1,0 +1,6 @@
+{% load wagtailimages_tags %}
+
+{% for block in value %}
+    {% image block.value.background original %}
+    {{ block.value.foreground }}
+{% endfor %}

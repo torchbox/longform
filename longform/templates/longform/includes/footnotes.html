@@ -1,0 +1,39 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<div class="page--footnotes">
+    <div class="content">
+
+        {% if render_accessible %}
+        <div class="block--text-introduction">
+            <div class="content">
+                <h1 class="text--introduction">Notes &amp; References</h1>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="footnotes--list">
+            <div class="content">
+                {% for footnote in page.footnotes.all %}
+                    <div class="footnotes--note" id="footnote_{{ forloop.counter }}">
+                        <div class="content">
+                            <div class="text--note_title">{{ forloop.counter }}</div>
+                            <div class="text--note">{{ footnote.text }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="footnotes--close">
+            <a class="link--close" href="#">
+                <div class="image--close">
+                    <svg class="close"  width="23" height="23">
+                        <use class="svg--close" x="0" y="0" xlink:href="#close" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>

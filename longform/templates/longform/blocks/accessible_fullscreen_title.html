@@ -1,0 +1,9 @@
+{% load wagtailcore_tags %}
+
+<div class="content--scroll">
+    <div class="column--{{ value.foreground_alignment }}">
+        <div class="content">
+            {% include_block value.foreground %}
+        </div>
+    </div>
+</div>

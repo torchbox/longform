@@ -1,0 +1,21 @@
+{% for item in column.stream %}
+    {% if item.type == 'section-heading' %}
+        {% include "atoms-section-heading" with item %}
+    {% elseif item.type == 'heading' %}
+        {% include "atoms-heading" with item %}
+    {% elseif item.type == 'sub-heading' %}
+        {% include "atoms-sub-heading" with item %}
+    {% elseif item.type == 'introduction' %}
+        {% include "atoms-introduction" with item %}
+    {% elseif item.type == 'paragraph' %}
+        {% include "atoms-paragraph" with item %}
+    {% elseif item.type == 'image' %}
+        {% include "atoms-image" with item %}
+    {% elseif item.type == 'image-cover' %}
+        {% include "atoms-image-cover" with item %}
+    {% elseif item.type == 'image-blur' %}
+        {% include "atoms-image-blur" with item %}
+    {% elseif item.type == 'video-cover' %}
+        {% include "atoms-video" with item %}
+    {% endif %}
+{% endfor %}

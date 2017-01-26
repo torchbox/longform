@@ -1,0 +1,96 @@
+/*------------------------------------*\
+    $Progress
+\*------------------------------------*/
+
+
+// Progress
+.progress {
+	// background: grey;
+	position: absolute;
+	z-index: 4;
+	width: 100%;
+	height: 100%;
+	top: 0px; left: 0px;
+	display: none !important;
+	// opacity: 0;
+
+	// transition:
+	// 	opacity 900ms linear 0ms;
+
+	> .content {
+		display: flex;
+		flex: 1;
+		width: 100%; height:100%;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&.loading {
+		display: block;
+	}
+
+	&.loaded {
+		display: none;
+	}
+}
+
+.progress--animation {
+	// display: inline-block;
+	width: 60px;
+	height: 60px;
+	margin-bottom: 10px;
+
+	.cube {
+		width: 33%;
+		height: 33%;
+		background-color: $color--white;
+		float: left;
+		animation: cubeGridScaleDelay 1.3s infinite ease-in-out; 
+
+		.theme--light & {
+		    background-color: $color--base;
+		}
+	}
+
+	.cube1 { animation-delay: 0.2s; }
+	.cube2 { animation-delay: 0.3s; }
+	.cube3 { animation-delay: 0.4s; }
+	.cube4 { animation-delay: 0.1s; }
+	.cube5 { animation-delay: 0.2s; }
+	.cube6 { animation-delay: 0.3s; }
+	.cube7 { animation-delay: 0s; }
+	.cube8 { animation-delay: 0.1s; }
+	.cube9 { animation-delay: 0.2s; }
+
+}
+
+.progress--bar {
+	position: relative;
+	overflow: hidden;
+	width: 60px;
+	height: 2px;
+
+	.bar {
+		position: relative;
+		left: -100%; // allows us to simply add the load percentage to the transform property
+		width: 100%; height: 10px;
+
+		background: $color--red;
+
+		transform: translate3D( 0%, 0%, 0 );
+
+		transition:
+			transform 250ms $ease--primary 0ms;
+
+	}
+}
+
+
+@keyframes cubeGridScaleDelay {
+	0%, 70%, 100% {
+	    transform: scale3D(1, 1, 1);
+	} 35% {
+	    transform: scale3D(0, 0, 1);
+	} 
+}

@@ -1,0 +1,252 @@
+.section--call_to_action {
+
+    $triangle-height: 7vw;
+    $triangle-width: 100vw;
+
+    // Space for the mobile navigation
+    // A better fix for this (to allow for the height of the navigation to be dynamic) would be to use flexbox on mobile to calculate the avilable space for both components
+    // TODO: Implement the above
+    padding-bottom: 44px;
+    @include gridle_state( desktop ){
+        padding-bottom: 0px;
+    }
+
+    /*
+        Content
+    */
+    .content--scroll {
+        position: relative;
+        height: 100%;
+        will-change: transform;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: auto;
+    }
+
+    /*
+        Columns
+    */
+    .column--related {
+
+        @include gridle_set((
+            grid : 12,
+            push: 0
+        ));
+
+        position: relative;
+        z-index: 2;
+        flex-shrink: 0;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: $gutter-mobile;
+        padding-bottom: $triangle-height;
+
+        > .content {
+            @include gridle_container;
+            @include outterGutter;
+        }
+
+        [class^='block--'] {
+            @include gridle_set((
+                grid : 12,
+                grid-centered : true,
+                desktop: (
+                    grid : 8,
+                    grid-centered : true
+                )
+            ));
+            margin: 0;
+        }
+
+        .text--introduction {
+            margin: 0;
+        }
+
+        .text--sub_heading {
+            color: $color--red;
+            margin: 0 0 $gutter-mobile;
+            text-decoration: none;
+        }
+
+    }
+
+    .column--newsletter {
+
+        @include gridle_set((
+            grid : 12,
+            push: 0
+        ));
+
+        position: relative;
+        z-index: 1;
+        background: $color--yellow;
+        flex-shrink: 0;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: $gutter-mobile;
+        padding-bottom: $gutter-mobile;
+
+        border-top: 1px solid $color--yellow;
+
+        > .content {
+            @include gridle_container;
+            @include outterGutter;
+        }
+
+        [class^='block--'] {
+            @include gridle_set((
+                grid : 12,
+                grid-centered : true,
+                desktop: (
+                    grid : 8,
+                    grid-centered : true
+                )
+            ));
+            margin: 0;
+        }
+
+        .text--paragraph {
+            margin: 0;
+        }
+
+        .text--sub_heading {
+            margin: 0 0 $gutter-mobile;
+        }
+
+        // TODO: Atomic
+        .block--form {
+            overflow: hidden;
+            margin: 0 0 $gutter-mobile;
+        }
+        .form--text {
+            float: left;
+            padding: $gutter-mobile;
+            border: none;
+            @include gridle_state( desktop ){
+                width: 300px;
+            }
+        }
+        .form--button {
+            float: left;
+            padding: $gutter-mobile;
+            border: none;
+            background: $color--base;
+            color: $color--white;
+        }
+
+        // triangle wedge
+        &:before {
+            content: '';
+            position: absolute;
+            top: -$triangle-height; left: 0px;
+            width: 0;
+            height: 0;
+            border-bottom: $triangle-height solid $color--yellow;
+            border-right: $triangle-width solid transparent;
+        }
+
+    }
+
+    .column--footer {
+
+        @include gridle_set((
+            grid : 12,
+            push: 0
+        ));
+
+        background: $color--base;
+        align-self: flex-end;
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding-top: $gutter-mobile;
+        padding-bottom: $gutter-mobile;
+
+        > .content {
+            @include gridle_container;
+            @include outterGutter;
+        }
+
+        [class^='block--'] {
+            @include gridle_set((
+                grid : 12,
+                grid-centered : true,
+                desktop: (
+                    grid : 6,
+                    grid-centered : true
+                )
+            ));
+            text-align: center;
+            margin: 0;
+        }
+
+        .text--copyright {
+            color: rgba( $color--white, 0.5 );
+        }
+
+        .menu--item {
+            display: inline-block;
+        }
+
+        .link--menu_item {
+            display: inline-block;
+            padding: 0 $gutter-mobile/2;
+            margin: $gutter-mobile/2 0;
+
+            color: $color--white;
+            text-decoration: none;
+
+            &:hover {
+                color: $color--red;
+            }
+        }
+
+    }
+
+    /*
+        Blocks
+    */
+    .image--blur {
+
+    }
+
+    /*
+        Intro animation starting points
+    */
+    &.intro {
+
+    }
+
+    /*
+        Showcase animation
+    */
+    .showcase--in & {
+
+    }
+
+    /*
+        Optimisation
+    */
+    // Potentially extended to a lot of additional elements
+    .content--locked div[class^='block--'] {
+        display: none;
+        // &.first,
+        // &.last,
+        &.block {
+            display: block;
+        }
+    }
+    // Does this smooth animations between images?
+    // &.active {
+    //     .content--locked div[class^='block--'] {
+    //         display: block;
+    //     }
+    // }
+
+}
+

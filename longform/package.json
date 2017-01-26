@@ -1,0 +1,63 @@
+{
+  "name": "gw-patternlab",
+  "version": "2.0.0",
+  "author": "Torchbox Ltd",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "sasslintConfig": ".sass-lint.yml",
+  "config" : {
+    "src_html"      : "static/dibb/templates",
+    "src_js"        : "static/dibb/javascript",
+    "src_css"       : "static/dibb/sass",
+    "src_img"       : "static/dibb/images",
+    "src_fonts"     : "static/dibb/fonts",
+    "dest_html"     : "patternlab/source/_patterns",
+    "dest_js"       : "static/longform/js",
+    "dest_css"      : "static/longform/css",
+    "dest_img"      : "static/longform/img",
+    "dest_fonts"    : "static/longform/fonts"
+  },
+  "scripts": {
+    "autoprefixer": "postcss -u autoprefixer -r $npm_package_config_dest_css/*.css",
+    "postautoprefixer": "browser-sync reload --files='*.css'",
+    "scss": "node-sass --output-style compressed --source-map true -o $npm_package_config_dest_css $npm_package_config_src_css",
+    "postscss": "npm run autoprefixer",
+    "serve": "browser-sync start --config browsersync.config.js",
+    "lint:js": "eslint $npm_package_config_src_js --ignore-pattern **/vendor/**/*.js || true",
+    "lint:css": "sass-lint $npm_package_config_src_css**/*.scss -v -q || true",
+    "lint": "npm-run-all -p lint:js lint:css",
+    "sync:js":"rsync -rtvu $npm_package_config_src_js/ $npm_package_config_dest_js/",
+    "postsync:js": "browser-sync reload",
+    "sync:fonts":"rsync -rtvu --delete $npm_package_config_src_fonts/ $npm_package_config_dest_fonts/",
+    "postsync:fonts": "browser-sync reload",
+    "sync:img":"rsync -rtvu --delete $npm_package_config_src_img/ $npm_package_config_dest_img/",
+    "postsync:img": "browser-sync reload",
+    "sync": "npm-run-all -p sync:js sync:img sync:fonts",
+    "//build:js": "rollup -c",
+    "postbuild:js": "browser-sync reload",
+    "build:css": "npm run scss",
+    "build": "npm-run-all -p lint sync:img sync:js build:css",
+    "watch:fonts": "onchange $npm_package_config_src_fonts'/**/**' -- npm run sync:fonts",
+    "watch:img": "onchange $npm_package_config_src_img'/**/**' -- npm run sync:img",
+    "watch:js": "onchange $npm_package_config_src_js'/**/**' -- npm-run-all -p lint:js sync:js",
+    "watch:css": "onchange $npm_package_config_src_css -- npm-run-all -p build:css",
+    "watch": "npm-run-all -p watch:img watch:js watch:css watch:fonts",
+    "dev": "npm run sync && npm-run-all -p serve watch build:css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "babel-eslint": "^6.1.2",
+    "browser-sync": "^2.13.0",
+    "eslint": "^3.2.2",
+    "node-sass": "^3.7.0",
+    "npm-run-all": "^2.1.1",
+    "onchange": "^2.4.0",
+    "postcss-cli": "^2.5.2",
+    "sass-lint": "^1.8.2"
+  },
+  "engines": {
+    "node": ">=4"
+  }
+}

@@ -1,0 +1,18 @@
+<div class="block--image-cover">
+    <div class="content">
+    	<div 
+    		class="image--cover"
+    		data-src="{{ url }}"
+    	></div>
+    	{% include "patterns/01-molecules/01-loading/00-progress.twig"  %}
+    	{% if caption %}
+			<div class="image--details">
+				<div class="content">
+					<span class="text--copyright">
+						{{ caption }}
+					</span>
+				</div>
+			</div>
+		{% endif %}
+    </div>
+</div>

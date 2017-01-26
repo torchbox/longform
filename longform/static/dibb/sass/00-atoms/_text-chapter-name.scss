@@ -1,0 +1,32 @@
+/*------------------------------------*\
+    $Text Paragraph
+\*------------------------------------*/
+
+.text--chapter_name {
+    @include font-smoothing;
+    display: block;
+    // Paragraph text in design docs (mixin?)
+    font-family: $font-secondary;
+    font-weight: 400;
+    text-transform: capitalize;
+    // Responsive points
+    font-size: 14px;
+    line-height: 16px;
+    padding: 0px;
+    @include gridle_state( tablet-portrait ){
+        font-size: 14px;
+        line-height: 16px;
+    }
+    @include gridle_state( tablet-landscape ){
+        font-size: 14px;
+        line-height: 16px;
+    }
+    @include gridle_state( desktop ){
+        font-size: 16px;
+        line-height: 18px;
+    }
+    @include gridle_state( desktop-wide ){
+        font-size: 18px;
+        line-height: 20px;
+    }
+}

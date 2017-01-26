@@ -1,0 +1,43 @@
+{% extends "longform/base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+    {% if render_accessible %}
+
+    {% else %}
+    <!-- 
+        <div class="page--loader active">
+            <div class="content">
+                <div class="image--loader">
+                    <svg class="svg--loader"  width="256" height="32">
+                        <use x="0" y="0" xlink:href="#loader" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    -->
+        {% include "longform/includes/branding.html" %}
+        {% include "longform/includes/navigation.html" %}
+        {% include "longform/includes/menu.html" %}
+        {% include "longform/includes/share.html" %}
+    {% endif %}
+
+    <div class="page--content">
+        <div class="content">
+
+            {% include_block page.body %}
+
+            {% if render_accessible %}
+
+            {% else %}
+                {% include "longform/includes/footer.html" %}
+            {% endif %}
+
+        </div>
+    </div>
+
+    {% include "longform/includes/footnotes.html" %}
+
+{% endblock %}

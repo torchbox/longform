@@ -1,0 +1,170 @@
+/*------------------------------------*\
+	$TABLE OF CONTENTS
+\*------------------------------------*/
+
+@import 'vendor/gridle/gridle';
+@import 'vendor/normalize';
+
+@import 'config/variables';
+@import 'config/type';
+@import 'config/grid';
+@import 'config/mixins';
+
+@import '00-atoms/text-heading';
+@import '00-atoms/text-section-heading';
+@import '00-atoms/text-sub-heading';
+@import '00-atoms/text-introduction';
+@import '00-atoms/text-paragraph';
+@import '00-atoms/text-copyright';
+@import '00-atoms/text-chapter-name';
+@import '00-atoms/text-quote';
+@import '00-atoms/text-attribution';
+@import '00-atoms/text-note';
+@import '00-atoms/text-note_title';
+
+@import '01-molecules/block-blockquote';
+
+
+/*------------------------------------*\
+	$Page setup
+\*------------------------------------*/
+
+@page{
+  size: A4 portrait;
+  // margin: 2cm 0cm;
+  orphans: 4;
+  widows: 2;
+}
+
+@page :first {
+	margin: 0cm 0cm;
+}
+
+
+/*------------------------------------*\
+	$Both Print & Screen
+\*------------------------------------*/
+
+
+.text--paragraph {
+	page-break-inside: avoid;
+	a, a:visited {
+		color: $color--base;
+		border-bottom: solid 1px $color--red;
+		text-decoration: none;
+		&:hover {
+			color: $color--red;
+		}
+	}
+	sup {
+		a, a:visited {
+			color: $color--red;
+			border-bottom: none;
+			
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.page--branding {
+	margin: $gutter-mobile 0;
+}
+
+.page--footnotes {
+	.text--note_title {
+		display: inline-block;
+	}
+	.text--note {
+		display: inline-block;
+	}
+}
+
+.chapter {
+	border-bottom: solid 1px $color--base;
+}
+
+.section--cover {
+
+	.chapter--links {
+		margin-bottom: $gutter-mobile;
+	}
+
+	.link--chapter {
+		display: block;
+		margin-left: $gutter-mobile/2;
+		text-decoration: none;
+		color: $color--red;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.image--icon {
+		display: inline-block;
+	}
+	.icon--square {
+		display: block;
+		width: 8px;
+		height: 8px;
+		border: solid 1px #000;
+		border-color: #000;
+	}
+	.text--chapter_name {
+		display: inline-block;
+	}
+}
+
+
+/*------------------------------------*\
+	$Print only
+\*------------------------------------*/
+
+@media print {
+	
+	a:not( [href*='yourdomain.com'] ):not( [href^='#'] ):not( [href^='/'] )::after { content: " [" attr(href) "]"; }
+	abbr[title]:after { content: " [" attr(title) "]"; }
+
+	img { max-width: 100% !important; }
+
+	.page--footnotes,
+	.chapter {
+		padding: 2cm 3.5cm 2cm 3cm;
+		page-break-before: always;
+	}
+
+	.section--cover {
+		page-break-after: always;
+	}
+}
+
+/*------------------------------------*\
+	$Screen only
+\*------------------------------------*/
+
+@media screen {
+	.page {
+		padding: 10px 15px;
+		@include gridle_state( tablet-portrait ){
+			padding: 20px 30px;
+		}
+		@include gridle_state( desktop ){
+			padding: 30px 40px;
+		}
+	}
+	.page--footnotes,
+	.chapter {
+		padding: 10px 15px;
+		@include gridle_state( tablet-portrait ){
+			padding: 20px 30px;
+		}
+		@include gridle_state( desktop ){
+			padding: 30px 40px;
+		}
+	}
+}
+
+
+
+
+

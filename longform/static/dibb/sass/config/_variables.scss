@@ -1,0 +1,97 @@
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+
+
+/* ============================================
+   Colours
+   Hex colours (or rgba, hsl) are abstracted into
+   named colour vars for readability. These can
+   then be used elsewhere, e.g. for "Theme Colours"
+   see below:
+*/
+
+// Colour vars
+$color--teal: #2eb1b0;
+$color--green: #68aa6c;
+$color--red: #ED1C24;
+$color--yellow: #FEDE34;
+$color--dark-grey: #2b3033;
+$color--white: #fff;
+$color--black: #000;
+
+// Theme colours
+$color--primary: $color--teal;
+$color--secondary: $color--green;
+$color--tertiary: $color--red;
+$color--quaternary: $color--yellow;
+$color--base: $color--dark-grey;
+
+// Text colours
+$color--text: $color--base;
+
+// Band theme colours (@FIXME: use the proper colours here:)
+$band--dark: #444;
+$band--darker: #222;
+$band--white: #fff;
+
+/* ============================================
+   Typography
+*/
+$font: 'TitilliumRegular', sans-serif;
+$font-bold: 'TitilliumBdBold', sans-serif;
+$font-secondary: 'Source Sans Pro', sans-serif;
+
+
+/* ============================================
+   Grid Dimentions
+*/
+$gutter-mobile:       18px;
+$gutter-tablet:       30px;
+$gutter-desktop:      42px;
+$gutter-desktop-wide: 102px;
+
+
+/* ============================================
+   Breakpoints
+*/
+$bp-tablet-portrait:  768px;
+$bp-tablet-landscape: 1024px;
+$bp-deskop:           1280px;
+$bp-deskop-wide:      2556px;
+$max-width:           1100px;
+
+
+/* ============================================
+   Transition speeds
+*/
+// TODO: make slow/medium/fast
+$speed--primary: 450ms;
+$speed--secondary: 750ms;
+
+$speed--section: 750ms;
+
+$ease--primary: cubic-bezier(0.315, 0.565, 0.110, 1.005);
+$ease--secondary: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+/* ============================================
+   Font sizes
+   The font sizes should be returned by the font-size()
+   function defined in mixins.scss
+   Naming convention based on:
+   https://github.com/jakegiltsoff/sassline/blob/master/assets/sass/sassline-base/_modular-scale.scss
+*/
+
+$font-sizes: (
+    'eta': 14px
+);
+
+/* ============================================
+   Aligner: placeholder class used to align
+   components at the template-level
+   For want of a better place to put this I've left it here:
+*/
+%aligner {
+    max-width: 1100px;
+    margin: 0 auto;
+}

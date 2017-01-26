@@ -1,0 +1,31 @@
+<div class="page--menu unload">
+    <div class="content">
+
+        <div class="menu--introduction">
+            <div class="content">
+                <div class="block--text-sub_heading ">
+                    <div class="content">
+                        <h2 class="text--sub_heading">{{ page.title }}</h2>
+                    </div>
+                </div>
+                <div class="block--text-paragraph ">
+                    <div class="content">
+                        <p class="text--paragraph">{{ page.introduction }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="menu--links">
+            <div class="content">
+                {% for menu_link in page.menu_links.all %}
+                    <div class="menu--item">
+                        <a class="link--menu_item" href="{{ menu_link.url }}">
+                            {{ menu_link.title }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </nav>
+    </div>
+</div>

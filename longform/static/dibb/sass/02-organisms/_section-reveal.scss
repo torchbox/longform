@@ -1,0 +1,81 @@
+.section--reveal_list {
+
+    .content--locked {
+    	@include outterGutter;
+        @include lockedBackground;
+        
+        transform: translate3d( 0%, 0%, 0 );
+        transition:
+            transform 650ms $ease--secondary 0s;
+
+        &.up {
+            transform: translate3d( 0%, -100%, 0 );
+        }
+    }
+
+    // Vertically align content
+    .column--middle {
+        position: relative;
+        height: 100%;
+        z-index: 1;
+        // text-align: center;
+        color: $color--white;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+
+        // TODO: Verify flexbox purpose, padding/margin?
+        transform: translate3d( 0%, -22%, 0 );
+
+        > .content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+        // div[class^='block--text'] {
+        //     position: relative;
+        //     z-index: 1;
+        //     display: flex;
+        //     flex: 1;
+        //     flex-direction: column;
+        //     justify-content: center;
+        //     width: 100%;
+        //     height: 100%;
+
+        //     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        //     color: white;
+
+        //     > .content {
+        //         // display: flex;
+        //     }
+        // }
+
+}
+
+//     .content--locked-cover {
+//         > .content {
+//             position: relative;
+//             height: 100%;
+//         }
+//     }
+//     div[class^='block--text'] {
+//         position: relative;
+//         z-index: 1;
+//         display: flex;
+//         flex: 1;
+//         flex-direction: column;
+//         justify-content: center;
+//         width: 100%;
+//         height: 100%;
+
+//         text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+//         color: white;
+
+//         > .content {
+//             // display: flex;
+//         }
+//     }
+// }

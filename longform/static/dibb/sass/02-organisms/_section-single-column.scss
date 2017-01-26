@@ -1,0 +1,26 @@
+.section--single_column {
+
+    > .content {
+        @include outterGutter;
+        color: $color--base !important;
+        background: $color--white !important;
+    }
+
+    .content--scroll {
+    	padding-top: 10%;
+        padding-bottom: 20%;
+    	// @include outterGutter;
+     //    .column--middle {
+     //        @include gridle_set((
+     //            grid : 12,
+     //            tablet-portrait: (
+     //                push : 3,
+     //                grid : 6
+     //            )
+     //        ));
+     //        > .content {
+     //            text-align: left;
+     //        }
+     //    }
+    }
+}

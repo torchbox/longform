@@ -1,0 +1,21 @@
+{# Section #}
+{% for section in chapter.sections %}
+    <div class="section--{{ section.type }} theme--{{ section.theme }}">
+        <div class="content">
+            {# Content #}
+            {% for content in section.content %}
+                <div class="content--{{ content.type }}">
+                    {# Column #}
+                    {% for column in content.columns %}
+                        <div class="column--{{ column.type }}">
+                            <div class="content">
+                                {# Stream #}
+                                {% include "templates-stream" %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}

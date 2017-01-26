@@ -1,0 +1,17 @@
+{% load wagtailcore_tags %}
+
+<div class="content--locked">
+    <div class="column--{{ value.locked_column_alignment }}">
+        <div class="content">
+            {% include_block value.locked_column %}
+        </div>
+    </div>
+</div>
+
+<div class="content--scroll">
+    <div class="column--{% if value.locked_column_alignment == 'left' %}right{% else %}left{% endif %}">
+        <div class="content">
+            {% include_block value.scrollable_column %}
+        </div>
+    </div>
+</div>

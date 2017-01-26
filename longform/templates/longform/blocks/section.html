@@ -1,0 +1,10 @@
+{% load wagtailcore_tags %}
+
+{% for block in value %}
+    <div class="section--{{ block.block_type }} {% if block.value.theme %}theme--{{ block.value.theme }}{% else %}theme--dark{% endif %}">
+        <div class="content">
+            {% include_block block %}
+        </div>
+    </div>
+{% endfor %}
+

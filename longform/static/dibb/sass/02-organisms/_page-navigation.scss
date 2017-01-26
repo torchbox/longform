@@ -1,0 +1,322 @@
+.page--navigation {
+
+	background: $color--white;
+	width: 100%;
+	padding-right: $gutter-mobile/2;
+
+	transform: translate3D( 0%, 0, 0 );
+	opacity: 1;
+
+	transition:
+	    transform $speed--secondary $ease--primary 0s,
+	    opacity 400ms linear 0s;
+
+	@include gridle_state( desktop ){
+		width: $gutter-desktop;
+		background: transparent;
+		padding-right: 0px;
+	}
+	@include gridle_state( desktop-wide ){
+		width: $gutter-desktop-wide;
+	}
+
+	// Horizontally align contents
+	> .content {
+		float: right;
+
+		@include gridle_state( desktop ){
+			float: none;
+			text-align: center;
+			display: inline-block;
+		}
+	}
+	a[class^='link--'] {
+
+		float: left; // For mobile, and IIRC Safari on desktop+
+
+		width: 44px;
+		height: 44px;
+
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.image--icon {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+.chapter--navigation {
+
+	display: none;
+
+	@include gridle_state( desktop ){
+		display: block;
+	}
+}
+
+.link--menu {
+	display: inline-block;
+	will-change: transform;
+
+	.image--icon {
+		position: relative;
+		overflow: hidden;
+	}
+	.icon--burger {
+		fill: $color--black;
+		height: 23px; // Needs to occupy same height as close
+		transition:
+			fill 250ms linear 0ms;
+	}
+	.icon--close {
+		position: absolute;
+		top: 0px; left: 0px;
+		height: 23px;
+		transform: rotate( 45deg ) translate3D( 200%, 0, 0 );
+		transform-origin: 50% 50%;
+	}
+
+	.menu--in & {
+		.icon--burger {
+			transform: translate3D( 100%, 0, 0 );
+		}
+		.icon--close {
+			transform: rotate( 45deg ) translate3D( 0%, 0, 0 );
+		}
+	}
+}
+
+.link--share {
+	display: inline-block;
+	will-change: transform;
+
+	.image--icon {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.icon--share {
+		fill: $color--black;
+		width: 23px;
+		transition:
+			fill 250ms linear 0ms;
+	}
+	.icon--close {
+		position: absolute;
+		top: 0px; left: 0px;
+		height: 23px;
+		transform: rotate( 45deg ) translate3D( 200%, 0, 0 );
+		transform-origin: 50% 50%;
+	}
+
+	.share--in & {
+		.icon--share {
+			transform: translate3D( 100%, 0, 0 );
+		}
+		.icon--close {
+			transform: rotate( 45deg ) translate3D( 0%, 0, 0 );
+		}
+	}
+}
+
+
+.link--chapter {
+
+	// TODO: calculation based on vars for right post required
+	$offset: $gutter-desktop;
+
+	position: relative;
+	display: inline-block;
+	padding: $gutter-mobile/2;
+	will-change: transform;	
+
+	.text--chapter_name {
+		display: block;
+		position: absolute;
+		right: $offset;
+
+		white-space: nowrap;
+		padding: $gutter-mobile/4 $gutter-mobile/2;
+
+		background: $color--white;
+		color: $color--base;	
+
+		transition:
+			opacity 350ms linear 0ms,
+			transform 650ms $ease--primary 0ms;
+
+		&.unload {
+			display: none;
+		}
+
+		&.anim--in {
+			transform: translate3d( 0%, 0, 0 );
+			opacity: 1;
+			&-setup {
+				transform: translate3d( 10px, 0, 0 );
+				opacity: 0;
+			}
+			&-transition {
+				transition:
+					opacity 350ms linear 100ms,
+					transform 650ms $ease--primary 0ms;
+			}
+		}
+
+		&.anim--out {
+			transform: translate3d( -20px, 0%, 0 );
+			opacity: 0;
+			&-setup {}
+			&-transition {
+				transition:
+					opacity 400ms linear 0ms,
+					transform 400ms easeout 0ms;
+			}
+		}
+	}
+
+	.icon--square {
+		background: transparent;
+
+		transition:
+			background 400ms linear 0ms;
+	}
+
+	&:hover,
+	&:focus {
+		outline: 0;
+	}
+
+	&.active {
+		.icon--square {
+			background: $color--black;
+		}
+	}
+
+}
+
+
+
+.link--showcase {
+	display: inline-block;
+	will-change: transform;
+
+	@include gridle_state( desktop ){
+		position: absolute;
+	    bottom: 0px;
+	}
+
+	.image--icon {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.icon--camera {
+		fill: $color--black;
+		width: 23px;
+		transition:
+			fill 250ms linear 0ms;
+	}
+
+	.icon--close {
+		position: absolute;
+		top: -3px; left: 0px;
+		height: 23px;
+		transform: rotate( 45deg ) translate3D( 200%, 0, 0 );
+		transform-origin: 50% 50%;
+	}
+
+	.showcase--in & {
+		.icon--camera {
+			transform: translate3D( 100%, 0, 0 );
+		}
+		.icon--close {
+			transform: rotate( 45deg ) translate3D( 0%, 0, 0 );
+		}
+	}
+
+	// Temp hide/show showcase mode
+	.disableShowcaseMode & {
+		display: none !important;
+	}
+}
+
+
+
+/*
+	Showcase mode
+*/
+// .showcase--in {
+// 	.page--navigation {
+// 		transform: translate3D( 0%, 100%, 0 );
+// 		@include gridle_state( desktop ){
+// 			transform: translate3D( 100%, 0, 0 );
+// 			opacity: 1;
+// 		}
+// 	}
+// }
+
+
+
+
+/*
+	Themes
+*/
+// Dark background, light foreground
+.theme--dark {
+
+	.page--navigation {
+		background: $color--base;
+		@include gridle_state( desktop ){
+			background: transparent;
+		}
+	}
+
+	.link--menu {}
+	// Burger menu
+	.link--menu {
+		.icon--burger {
+			fill: $color--white;
+		}
+	}
+
+	// Chapter Icon
+	.icon--square {
+		border-color: $color--white;
+	}
+	.active {
+		.icon--square {
+			background: $color--white;
+			border-color: $color--white;
+		}
+	}
+	// Chapter name
+	.text--chapter_name {
+		// background: linear-gradient(to right, rgba($color--base,1) 0%,rgba($color--base,1) 20%,rgba($color--base,0) 100%,rgba($color--base,0) 100%);
+		background: $color--base;
+		color: $color--white;
+	}
+
+	// Share Icon
+	.link--share {
+		.icon--share {
+			fill: $color--white;
+		}
+	}
+
+	// Showcase
+	.link--showcase {
+		.icon--camera {
+			fill: $color--white;
+		}
+	}
+
+}
+// Light background, dark foreground
+.theme--light {
+
+}
+

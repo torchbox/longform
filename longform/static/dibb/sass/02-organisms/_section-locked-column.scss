@@ -1,0 +1,332 @@
+.section--locked_column {
+
+    > .content {
+        @include outterGutter;
+        // color: $color--base;
+
+        @include gridle_state( small ){
+            display: flex;
+            flex: 1;
+            flex-direction: column;   
+        }
+    }
+
+    .content--scroll {
+        @include scrollContainer;
+        
+        @include gridle_state( small ){
+            height: 75vh;
+            position: absolute;
+            bottom: 44px;
+            background: $color--white;
+        }
+
+        transform: translate3D( 0%, 0, 0px );
+
+        // Make images the width of the text column
+        .block--image-inline img {
+            width: 100%;
+        }
+        // Padding for scroll content
+        .column--right,
+        .column--left {
+            padding-top: 20%;
+            padding-bottom: 20%;
+        }
+
+        @include gridle_state( desktop ){
+            .column--right {
+                padding-left: $gutter-desktop;
+            }
+            .column--left {
+                padding-right: $gutter-desktop;
+            }
+        }
+        @include gridle_state( desktop-wide ){
+            .column--right {
+                padding-left: $gutter-desktop-wide;
+            }
+            .column--left {
+                padding-right: $gutter-desktop-wide;
+            }
+        }
+    }
+
+
+    .content--locked {
+
+        @include outterGutter;
+        @include verticalSpacing;
+        @include gridle_state( small ){
+            height: 80vh;
+            // -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,0.01) 0%,rgba(255,255,255,0) 2%,rgba(255,255,255,1) 10%,rgba(255,255,255,1) 90%,rgba(255,255,255,0) 97%,rgba(255,255,255,0) 100%);
+        }
+        @include lockedBackground;
+        perspective: 1000px;
+
+
+        div[class^='block--'] {
+
+            position: absolute;
+            top: 0px; left: 0px;
+
+            @include gridle_state( tablet-portrait ){
+                width: 100%;
+                height: 100%;
+
+                // Vertically align locked block content 
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            // Default state
+            transform: translate3D( 0%, 0%, 0 );
+            opacity: 0;          
+
+            &.unload {
+                display: none;
+            }
+
+            &.reset {
+                display: none;
+            }
+
+            &.anim--in-up {
+                transform: translate3D( 0%, 0%, 0 );
+                opacity: 1;
+                &-setup {
+                    transform: translate3D( 0%, 50%, -50px );
+                    opacity: 0;
+                    transition-duration: 0ms;
+                    transition-delay: 0ms;
+                }
+                &-transition {
+                    transition:
+                        opacity 900ms linear 0s,
+                        transform 900ms ease 0s;
+                }
+            }
+
+            &.anim--in-down {
+                transform: translate3D( 0%, 0%, 0 );
+                opacity: 1;
+                &-setup {
+                    transform: translate3D( 0%, -50%, -50px );
+                    opacity: 0;
+                    transition-duration: 0ms;
+                    transition-delay: 0ms;
+                }
+                &-transition {
+                    transition:
+                        opacity 900ms linear 0s,
+                        transform 900ms ease 0s;
+                }
+            }
+
+
+            &.is--loaded {}
+
+            &.anim--out-up {
+                transform: translate3D( 0%, -50%, -50px );
+                opacity: 0;
+                &-setup {
+                    transform: translate3D( 0%, 0%, 0 );
+                    opacity: 1;
+                    transition-duration: 0ms;
+                    transition-delay: 0ms;
+                }
+                &-transition {
+                    transition:
+                        opacity 900ms linear 0s,
+                        transform 900ms ease 0s;
+                }
+            }
+            &.anim--out-down {
+                transform: translate3D( 0%, 50%, -50px );
+                opacity: 0;
+                &-setup {
+                    transform: translate3D( 0%, 0%, 0 );
+                    opacity: 1;
+                    transition-duration: 0ms;
+                    transition-delay: 0ms;
+                }
+                &-transition {
+                    transition:
+                        opacity 900ms linear 0s,
+                        transform 900ms ease 0s;
+                }
+            }
+
+            > .content {
+                // height: 50%;
+            }
+
+        }
+    }
+
+    .column--right,
+    .column--left {
+
+        @include gridle_state( small ){
+
+            transform: translate3d( 0%, 0%, -100px );
+            opacity: 0.75;
+            transition:
+                opacity 550ms linear 0ms,
+                transform 950ms $ease--primary 0ms;
+        }
+        
+        > .content {}
+    }
+
+    /*
+        State & Animations
+    */
+    &.anim--in {
+
+        .content--scroll {
+            transform: translate3d( 0%, 0%, 0 );
+
+            .direction--up & {
+                transform: translate3D( 0%, 0%, 0px );
+            }
+            transition:
+                opacity 550ms linear 0ms,
+                transform 1000ms $ease--primary 300ms;
+        }
+
+        .content--locked {
+            transform: translate3d( 0%, 0%, 0 );
+
+            .direction--up & {
+                transform: translate3D( 0%, 0%, 0px );
+            }
+            transition:
+                opacity 550ms linear 0ms,
+                transform 1000ms $ease--primary 150ms;
+        }
+
+        &-setup {
+
+            .content--scroll {
+                transform: translate3D( 0%, 40%, 0px );
+
+                transition-duration: 0ms;
+                transition-delay: 0ms;
+
+                .direction--up & {
+                    transform: translate3D( 0%, -40%, 0px );
+                }
+
+            }
+
+            .content--locked {
+                transform: translate3D( 0%, 40%, 0px );
+
+                transition-duration: 0ms;
+                transition-delay: 0ms;
+
+                .direction--up & {
+                    transform: translate3D( 0%, -40%, 0px );
+                }
+
+            }
+        }
+        &-transition {
+
+            .content--scroll {
+                transition:
+                    opacity 550ms linear 0ms,
+                    transform 1000ms $ease--primary 300ms;
+            }
+            .content--locked {
+                transition:
+                    opacity 550ms linear 0ms,
+                    transform 1000ms $ease--primary 150ms;
+            }
+            
+        }
+    }
+
+    &.anim--out {
+
+       .content--scroll {
+            // background: lightblue;
+            transform: translate3d( 0%, -40%, 0 );
+           .direction--up & {
+                transform: translate3D( 0%, 40%, 0px );
+            }
+
+            transition:
+                opacity 550ms linear 0ms,
+                transform 1000ms $ease--primary 0ms;
+
+       }
+
+       .content--locked {
+            // background: lightblue;
+            transform: translate3d( 0%, -40%, 0 );
+           .direction--up & {
+                transform: translate3D( 0%, 40%, 0px );
+            }
+
+            transition:
+                opacity 550ms linear 0ms,
+                transform 1000ms $ease--primary 0ms;
+
+       }
+
+       &-setup {
+
+            transition-duration: 0ms;
+            transition-delay: 0ms;
+
+       }
+       &-transition {
+
+           .content--scroll {
+               transition:
+                   transform 1000ms $ease--primary 0ms;
+           }
+           .content--locked {
+               transition:
+                   transform 1000ms $ease--primary 0ms;
+           }
+           
+       }
+    }
+
+    /*
+        Intro animation
+    */
+    &.intro {
+
+        
+    }
+
+    /*
+        Showcase animation
+    */
+    .showcase--in & {
+        // Not currently active
+    }
+
+    /*
+        Themes
+    */
+    &.theme--dark {
+        > .content {
+            color: $color--white;
+        }
+
+        .content--scroll {
+            @include gridle_state( small ){
+                background: $color--base;
+            }
+        }
+    }
+
+}
+

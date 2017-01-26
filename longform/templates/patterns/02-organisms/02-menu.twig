@@ -1,0 +1,51 @@
+<div class="menu--branding">
+	<a class="link--home" href="#">
+	    <div class="image--logo">
+	        <svg class="logo"  width="180" height="32">
+	            <use class="svg--logo" x="0" y="0" xlink:href="#logo" />
+	        </svg>
+	    </div>
+	</a>
+</div>
+
+<div class="menu--introduction">
+	<div class="content">
+		{% include "atoms-sub-heading" with { content : title } %}
+		{% include "atoms-paragraph" with { content : description } %}
+	</div>
+</div>
+
+<nav class="menu--links">
+	<div class="content">
+		<div class="menu--item">
+			<a class="link--menu_item" href="#">
+				More about the campaign
+			</a>
+		</div>
+		<div class="menu--item">
+			<a class="link--menu_item" href="#">
+				Donate
+			</a>
+		</div>
+		<div class="menu--item">
+			<a class="link--menu_item" href="#">
+				Press releases
+			</a>
+		</div>
+		<div class="menu--item">
+			<a class="link--menu_item" href="#">
+				About us
+			</a>
+		</div>
+		<div class="menu--item">
+			<a class="link--menu_item" href="#">
+				Help us to continue the work we are doing 
+			</a>
+		</div>
+		<div class="menu--item">
+			<a class="link--menu_item" href="#">
+				Support us by making a donation
+			</a>
+		</div>
+	</div>
+</nav>

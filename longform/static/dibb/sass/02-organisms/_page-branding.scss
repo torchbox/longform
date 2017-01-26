@@ -1,0 +1,50 @@
+.page--branding {
+
+	> .content {
+		@include gridle_container;
+		@include outterGutter;
+
+	    width: 100%;
+	    height: 100%;
+
+	    padding-top: 0px;
+	    @include gridle_state( tablet-portrait ){
+	        padding-top: 13px;
+	    }
+	    @include gridle_state( desktop ){
+	        padding-top: 20px;
+	    }
+	}
+
+	.link--home {
+		display: inline-block;
+	    // @include gridle_set((
+	    //     grid : 12
+	    // ));
+	}
+
+	.svg--logo {
+	    fill: $color--base;
+	    width: 200px;
+
+	    transition:
+	        fill 650ms linear 0s;
+
+	    @include gridle_state( tablet-portrait ){
+	    	width: 100%;
+	    }
+	}
+
+}
+
+
+/*
+	Themes
+*/
+// Dark background, light foreground
+.theme--dark {
+	.svg--logo {
+		fill: $color--white;
+	}
+}
+
