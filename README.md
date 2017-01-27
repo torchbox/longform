@@ -1,4 +1,3 @@
-
 # Longform
 
 Provides a new page type in wagtail that allows authors to add content to several newely defined block types within streamfield.
@@ -8,7 +7,7 @@ Each longform page created produces both a page that depends on JavaScript, and,
 
 ## What's required
 
-* An instance of Wagtail
+* An instance of [Wagtail](https://github.com/wagtail/wagtail)
 
 
 ## What's included
@@ -42,6 +41,3 @@ If you would like to adjust the CSS and/or JS;
 * Ensure you have [node](https://nodejs.org/en/) 4.x or higher (we recommend sticking to LTS releases to ensure module compatibility)
 * Install dependancies, navigate to the `/longform` directory and run `npm install`
 * Build and watch source directories with `npm run dev`
-
-
-## License
