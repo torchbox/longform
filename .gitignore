@@ -1,0 +1,6 @@
+*.pyc
+.DS_Store
+/static/
+/media/
+/node_modules/
+npm-debug.log
