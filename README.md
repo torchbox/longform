@@ -1,5 +1,5 @@
 
-# Wagtail Longform
+# Longform
 
 Provides a new page type in wagtail that allows authors to add content to several newely defined block types within streamfield.
 
